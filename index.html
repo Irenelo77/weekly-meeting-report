@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周会议资料中心｜管委会 + 人事行政</title>
+<style>
+:root {
+  --bg:#f4f7fb; --card:#fff; --text:#172033; --muted:#6b7485;
+  --nav:#10203a; --nav2:#172b4d; --blue:#2f6fed; --green:#1f9d68;
+  --yellow:#d99916; --red:#d95454; --gray:#8993a4; --line:#e6eaf0;
+  --soft:#eef4ff; --sidebar:250px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:var(--bg);color:var(--text)}
+button{font:inherit}
+.sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:var(--sidebar);background:linear-gradient(180deg,#0f1f3a,#152b4d);
+  color:#fff;z-index:50;padding:22px 16px;overflow:auto;box-shadow:6px 0 24px rgba(9,20,42,.12)
+}
+.logo{font-size:19px;font-weight:850;margin:2px 8px 5px}
+.logo-sub{font-size:11px;color:#9fb1cd;margin:0 8px 22px;line-height:1.6}
+.meeting-btn{
+  width:100%;border:0;background:transparent;color:#cbd7e8;padding:12px 13px;border-radius:10px;
+  text-align:left;cursor:pointer;margin:4px 0;font-weight:750;display:flex;align-items:center;gap:10px
+}
+.meeting-btn:hover{background:rgba(255,255,255,.07);color:#fff}
+.meeting-btn.active{background:#2f6fed;color:#fff;box-shadow:0 6px 16px rgba(47,111,237,.28)}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.9}
+.subnav{margin:7px 0 15px 21px;border-left:1px solid rgba(255,255,255,.13);padding-left:10px}
+.subnav a{display:block;color:#9fb1cd;text-decoration:none;font-size:12px;padding:6px 7px;border-radius:6px}
+.subnav a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.sidebar-foot{font-size:11px;color:#7f94b4;margin:22px 8px 8px;line-height:1.6}
+.content{margin-left:var(--sidebar);min-height:100vh}
+.meeting-page{display:none}
+.meeting-page.active{display:block}
+.hero{
+  padding:43px 34px 32px;background:linear-gradient(135deg,#10203a,#1c3d72 55%,#2f6fed);color:#fff
+}
+.hero.hr{background:linear-gradient(135deg,#26384f,#37647a 55%,#2f7d74)}
+.hero-inner,.container{max-width:1320px;margin:0 auto}
+.hero h1{font-size:34px;margin:0 0 10px}
+.hero p{margin:0;color:#dbe6f8;font-size:15px;line-height:1.8}
+.hero-meta{margin-top:14px;font-size:13px;color:#c4d4ea}
+.container{padding:24px 25px 60px}
+.section{scroll-margin-top:20px;margin-bottom:25px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:7px 2px 14px}
+.section-title{font-size:24px;font-weight:850}
+.section-sub{font-size:13px;color:var(--muted)}
+.grid{display:grid;gap:14px}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 7px 24px rgba(24,39,75,.055)}
+.metric .label,.label{font-size:13px;color:var(--muted);margin-bottom:9px}
+.metric .value{font-size:28px;font-weight:850;letter-spacing:-.5px}
+.metric .note,.small-note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.65}
+.accent{border-top:4px solid var(--blue)} .good{border-top:4px solid var(--green)}
+.warn{border-top:4px solid var(--yellow)} .alert{border-top:4px solid var(--red)} .gray{border-top:4px solid var(--gray)}
+.management{background:linear-gradient(135deg,#f7faff,#eef4ff);border:1px solid #d9e5ff;padding:18px 20px;border-radius:14px;margin-top:14px;line-height:1.8}
+.management b{color:#163d84}
+.table-wrap{overflow:auto;border-radius:14px;border:1px solid var(--line);background:#fff}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th,td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top;line-height:1.65}
+th{background:#f8fafc;color:#4c566a;font-weight:750}
+tr:last-child td{border-bottom:none}
+.status{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:750}
+.s-green{background:#e9f7f0;color:#14794f} .s-yellow{background:#fff5da;color:#94640a}
+.s-gray{background:#eef1f5;color:#657084} .s-blue{background:#eaf1ff;color:#245cb8}
+.delta-up{color:var(--green);font-weight:800} .delta-down{color:var(--red);font-weight:800}
+.bank-list{margin-top:14px} .bank-row{display:grid;grid-template-columns:100px 1fr 110px;gap:10px;align-items:center;margin:10px 0;font-size:12px}
+.bar{height:8px;border-radius:99px;background:#edf0f4;overflow:hidden} .bar i{display:block;height:100%;background:#597fca;border-radius:99px}
+.kol-item{display:flex;align-items:flex-end;justify-content:space-between;gap:10px} .kol-item .big{font-size:27px;font-weight:850} .badge{font-size:12px;font-weight:800}
+.action-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.action{position:relative;padding-left:58px;min-height:124px} .action-num{position:absolute;left:18px;top:18px;width:28px;height:28px;border-radius:8px;background:#edf3ff;color:#245cb8;display:grid;place-items:center;font-weight:850}
+.action h3{font-size:15px;margin:0 0 10px} .action p{font-size:12px;color:var(--muted);margin:4px 0}
+.hr-progress{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.todo-list{display:grid;gap:10px}
+.todo{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;padding:13px;border:1px solid var(--line);border-radius:11px;background:#fff}
+.todo-num{width:26px;height:26px;border-radius:7px;background:#edf3ff;color:#245cb8;display:grid;place-items:center;font-size:12px;font-weight:800}
+.todo-title{font-weight:800;font-size:14px;margin-bottom:5px} .todo-desc{font-size:12px;color:var(--muted);line-height:1.65}
+.placeholder{padding:38px;text-align:center;border:1px dashed #cbd3df;border-radius:14px;background:#fbfcfe;color:var(--muted)}
+.placeholder b{display:block;color:#4a5568;font-size:17px;margin-bottom:8px}
+.footer{text-align:center;color:#8791a3;font-size:12px;padding:20px}
+@media(max-width:980px){
+  :root{--sidebar:210px} .grid-4,.grid-3,.grid-2,.action-grid,.hr-progress{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .sidebar{position:static;width:100%;height:auto} .content{margin-left:0} .subnav{display:none}
+  .grid-4,.grid-3,.grid-2,.action-grid,.hr-progress{grid-template-columns:1fr} .hero h1{font-size:27px}
+}
+@media print{.sidebar{display:none}.content{margin-left:0}.meeting-page{display:block!important;page-break-after:always}.card{box-shadow:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="logo">周会议资料中心</div>
+  <div class="logo-sub">一个 HTML · 两个会议<br>点击下方会议名称切换资料</div>
+
+  <button class="meeting-btn active" data-target="management"><span class="dot"></span>管委会周会议</button>
+  <div class="subnav" id="management-nav">
+    <a href="#overview" onclick="showMeeting('management')">经营总览</a>
+    <a href="#projects" onclick="showMeeting('management')">项目经营</a>
+    <a href="#finance" onclick="showMeeting('management')">财务收支</a>
+    <a href="#kol" onclick="showMeeting('management')">KOL专项</a>
+    <a href="#risk" onclick="showMeeting('management')">风险事项</a>
+    <a href="#actions" onclick="showMeeting('management')">下周行动</a>
+  </div>
+
+  <button class="meeting-btn" data-target="hradmin"><span class="dot"></span>人事行政周会议</button>
+  <div class="subnav" id="hradmin-nav" style="display:none">
+    <a href="#hr-overview" onclick="showMeeting('hradmin')">本周总览</a>
+    <a href="#admin-report" onclick="showMeeting('hradmin')">行政汇报</a>
+    <a href="#hr-report" onclick="showMeeting('hradmin')">人事汇报</a>
+  </div>
+
+  <div class="sidebar-foot">会议日期：2026/08/30<br>Reported By：Irene</div>
+</aside>
+
+<div class="content">
+
+<section id="management" class="meeting-page active">
+<section class="hero">
+  <div class="hero-inner">
+    <h1>经营结果 · 风险事项 · 行动闭环</h1>
+    <p>将原PPT逐页汇报整合为“总览—项目—财务—专项—风险—行动”的管理驾驶舱。</p>
+    <div class="hero-meta">2026/08/30 ｜ 汇报人：Irene</div>
+  </div>
+</section><main class="container">
+
+<section class="section" id="overview">
+  <div class="section-head">
+    <div><div class="section-title">01｜本周经营总览</div><div class="section-sub">先看结果，再看例外事项</div></div>
+  </div>
+  <div class="grid grid-4">
+    <div class="card metric good">
+      <div class="label">领功本周下发流水</div><div class="value">¥249,443</div>
+      <div class="note">累计 ¥678,143；本周完成 1 家客户下发</div>
+    </div>
+    <div class="card metric accent">
+      <div class="label">JOINCOM 月预计收入</div><div class="value">HK$199,422</div>
+      <div class="note">本周预计佣金 HK$99,006；异常扣佣 0 单</div>
+    </div>
+    <div class="card metric good">
+      <div class="label">中烟剩余应收</div><div class="value">¥0</div>
+      <div class="note">应收口径已清；聚客侧仍有剩余应付 ¥26,258.07</div>
+    </div>
+    <div class="card metric warn">
+      <div class="label">本周管理关注</div><div class="value" style="font-size:22px">回款 / 信息同步</div>
+      <div class="note">中烟末期支付流程；AI及公关业务待补充最新进展</div>
+    </div>
+  </div>
+  <div class="management"><b>管理结论：</b>核心业务正常推进，JOINCOM 本周佣金显著提升；当前会议讨论应聚焦中烟末期事项、证照/软著缺口，以及 AI / 公关信息未同步的问题。</div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-head">
+    <div><div class="section-title">02｜项目经营板块</div><div class="section-sub">绿灯简报，黄灯与灰灯进入讨论</div></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>模块</th><th>状态</th><th>本周关键结果</th><th>管理结论 / 下一动作</th></tr></thead>
+      <tbody>
+        <tr><td><b>领功</b></td><td><span class="status s-green">正常</span></td><td>¥249,443 本周流水</td><td>清源7月数据下发，渠道账户开立</td></tr>
+        <tr><td><b>返现易</b></td><td><span class="status s-green">正常</span></td><td>4个平台发起提现</td><td>美团入口与历史数据整理完成</td></tr>
+        <tr><td><b>JOINCOM</b></td><td><span class="status s-green">正常</span></td><td>HK$99,006 本周预计佣金</td><td>较上周 HK$11,064 明显提升，跟进佣金到账与客户返现</td></tr>
+        <tr><td><b>中烟</b></td><td><span class="status s-yellow">关注</span></td><td>末期事项进入收尾</td><td>聚客侧剩余应付 ¥26,258.07，推进9月支付流程</td></tr>
+        <tr><td><b>证照 / 软著</b></td><td><span class="status s-yellow">关注</span></td><td>主要续期已完成</td><td>聚客ISO报价、知识产权与软著缺口待推进</td></tr>
+        <tr><td><b>AI（云算力）</b></td><td><span class="status s-gray">待更新</span></td><td>—</td><td>待 Jacco 同步结果 / 风险 / 下周动作</td></tr>
+        <tr><td><b>KOL</b></td><td><span class="status s-yellow">关注</span></td><td>发布296条；净增订阅8,012</td><td>观看时长增长，但观看量与估算收入回落</td></tr>
+        <tr><td><b>公关业务</b></td><td><span class="status s-gray">待更新</span></td><td>—</td><td>待补充本周成果、数据及下周计划</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:14px">
+    <div class="card">
+      <h3 style="margin-top:0">JOINCOM｜佣金跃升</h3>
+      <div class="grid grid-3">
+        <div class="metric"><div class="label">本月预计累计佣金</div><div class="value" style="font-size:22px">HK$195,802</div></div>
+        <div class="metric"><div class="label">本月累计支出</div><div class="value" style="font-size:22px">HK$33,434</div></div>
+        <div class="metric"><div class="label">异常处理完成率</div><div class="value" style="font-size:22px">100%</div></div>
+      </div>
+      <div class="small-note" style="margin-top:14px">佣金由上周 HK$11,064 增至本周 HK$99,006。增长来自新上台客户与阶段收款。</div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">领功 & 返现易｜动作落地</h3>
+      <div class="grid grid-4">
+        <div class="metric"><div class="label">下发流水</div><div class="value" style="font-size:20px">¥249,443</div></div>
+        <div class="metric"><div class="label">服务收入</div><div class="value" style="font-size:20px">¥498.89</div></div>
+        <div class="metric"><div class="label">下发客户</div><div class="value" style="font-size:20px">1家</div></div>
+        <div class="metric"><div class="label">提现平台</div><div class="value" style="font-size:20px">4个</div></div>
+      </div>
+      <div class="small-note" style="margin-top:14px">本周流水稳定，但服务收入仍偏低，应继续扩大有效下发规模。</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="finance">
+  <div class="section-head">
+    <div><div class="section-title">03｜财务收支板块</div><div class="section-sub">截至 2026/08/28；银行余额与合伙人余额采用不同口径</div></div>
+  </div>
+  <div class="grid grid-3">
+    <div class="card metric accent"><div class="label">银行余额合计</div><div class="value">¥1,291,408</div><div class="note">聚客、云算力、自牧、兑的、珠海新澳</div></div>
+    <div class="card metric good"><div class="label">合伙人账户净余额</div><div class="value">¥142,846</div><div class="note">含港币按查询日人民币汇率中间价折算</div></div>
+    <div class="card metric alert"><div class="label">合伙人负数余额小计</div><div class="value">-¥1,027,435</div><div class="note">净额为正，但负余额敞口需单独关注</div></div>
+  </div>
+  <div class="grid grid-2" style="margin-top:14px">
+    <div class="card">
+      <h3 style="margin-top:0">银行余额分布</h3>
+      <div class="bank-list">
+        <div class="bank-row"><span>聚客</span><div class="bar"><i style="width:74%"></i></div><b>¥274,630</b></div>
+        <div class="bank-row"><span>云算力</span><div class="bar"><i style="width:89%"></i></div><b>¥330,215</b></div>
+        <div class="bank-row"><span>自牧</span><div class="bar"><i style="width:80%"></i></div><b>¥294,815</b></div>
+        <div class="bank-row"><span>兑的</span><div class="bar"><i style="width:6%"></i></div><b>¥22,794</b></div>
+        <div class="bank-row"><span>珠海新澳</span><div class="bar"><i style="width:100%"></i></div><b>¥368,953</b></div>
+      </div>
+    </div>
+    <div class="card warn">
+      <h3 style="margin-top:0">负余额重点关注</h3>
+      <div class="table-wrap" style="border:none">
+        <table style="min-width:0">
+          <tbody>
+            <tr><td>梁剑锋</td><td style="text-align:right"><b>-¥577,454</b></td></tr>
+            <tr><td>曾晓峰</td><td style="text-align:right"><b>-¥280,570</b></td></tr>
+            <tr><td>曾鼎</td><td style="text-align:right"><b>-¥120,964</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="small-note" style="margin-top:12px">建议会议只讨论异常余额与清理动作，不将合伙人余额与银行存款直接合并判断现金水平。</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="kol">
+  <div class="section-head">
+    <div><div class="section-title">04｜KOL专项板块</div><div class="section-sub">内容产出与用户增长上升，观看量及收入回落</div></div>
+  </div>
+  <div class="grid grid-4">
+    <div class="card"><div class="kol-item"><div><div class="label">总观看量</div><div class="big">1,129.10万</div></div><span class="badge delta-down">↓ 3.4%</span></div></div>
+    <div class="card"><div class="kol-item"><div><div class="label">观看时长</div><div class="big">115,798.5h</div></div><span class="badge delta-up">↑ 3.0%</span></div></div>
+    <div class="card"><div class="kol-item"><div><div class="label">净增订阅</div><div class="big">8,012</div></div><span class="badge delta-up">↑ 1.7%</span></div></div>
+    <div class="card"><div class="kol-item"><div><div class="label">估算收入</div><div class="big">$556.01</div></div><span class="badge delta-down">↓ 5.3%</span></div></div>
+  </div>
+  <div class="management"><b>管理结论：</b>发布量 +2.4%、观看时长 +3.0%，频道规模与互动质量继续改善；但总观看量下降 3.4%、估算收入下降 5.3%。下周应拆解观看量下降来源，并验证订阅增长是否能进一步转化为收入。</div>
+</section>
+
+<section class="section" id="risk">
+  <div class="section-head">
+    <div><div class="section-title">05｜风险与职能事项</div><div class="section-sub">只展示需要管理层关注的例外，已完成事项转备查</div></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>级别</th><th>事项</th><th>现状 / 影响</th><th>本周动作</th></tr></thead>
+      <tbody>
+        <tr><td><span class="status s-yellow">黄</span></td><td><b>中烟末期支付款</b></td><td>剩余应付 ¥26,258.07；剩余 1 期</td><td>9月10日支付，推进提交流程</td></tr>
+        <tr><td><span class="status s-yellow">黄</span></td><td><b>聚客 ISO 更新</b></td><td>3 个 ISO 报价 ¥29,000</td><td>确认预算与办理计划</td></tr>
+        <tr><td><span class="status s-yellow">黄</span></td><td><b>知识产权 / 软著</b></td><td>云算力、聚客各已提交2个一类知识产权；软著仍有缺口</td><td>每周确认审查与提交进度</td></tr>
+        <tr><td><span class="status s-green">绿</span></td><td><b>主要证照续期</b></td><td>ICP / EDI、劳务派遣、火炬年审、商标续展等已完成</td><td>转入备查，不占会议时间</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="actions">
+  <div class="section-head">
+    <div><div class="section-title">06｜下周行动闭环</div><div class="section-sub">会议结束时确认负责人、截止时间及需要的管理支持</div></div>
+  </div>
+  <div class="action-grid">
+    <div class="card action"><div class="action-num">01</div><h3>中烟外包尾款支付</h3><p>负责人：项目组</p><p>截止：按合同节点</p></div>
+    <div class="card action"><div class="action-num">02</div><h3>JOINCOM佣金到账跟进</h3><p>负责人：Miya</p><p>截止：下周会前</p></div>
+    <div class="card action"><div class="action-num">03</div><h3>软著审查与缺口提交</h3><p>负责人：琪琪</p><p>截止：滚动更新</p></div>
+    <div class="card action"><div class="action-num">04</div><h3>证书到期提醒与续签</h3><p>负责人：琪琪</p><p>截止：按证照节点</p></div>
+    <div class="card action gray"><div class="action-num">05</div><h3>AI进展同步</h3><p>Jacco 补充：结果 / 风险 / 下周动作</p><p>状态：待更新</p></div>
+    <div class="card action gray"><div class="action-num">06</div><h3>公关业务更新</h3><p>模块负责人补充：成果 / 数据 / 计划</p><p>状态：待更新</p></div>
+  </div>
+</section>
+
+<div class="footer">管委会周会议汇报 · 2026/08/30 ｜ 浏览器打开即可汇报，支持打印 / 导出PDF</div>
+</main>
+</section>
+
+<section id="hradmin" class="meeting-page">
+  <section class="hero hr">
+    <div class="hero-inner">
+      <h1>人事行政周会议</h1>
+      <p>独立于管委会经营汇报，集中展示工商、证照、知识产权、行政交接及人事事项。</p>
+      <div class="hero-meta">2026/08/30 ｜ Reported By：Irene</div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="section" id="hr-overview">
+      <div class="section-head">
+        <div><div class="section-title">01｜本周总览</div><div class="section-sub">行政事项集中推进，人事汇报内容待补充</div></div>
+      </div>
+      <div class="grid grid-4">
+        <div class="card metric warn"><div class="label">工商事项</div><div class="value" style="font-size:23px">2项推进中</div><div class="note">夏风星河股东变更；臻爱注销公示</div></div>
+        <div class="card metric accent"><div class="label">知识产权 / 软著</div><div class="value" style="font-size:23px">持续推进</div><div class="note">2家公司一类知识产权已提交；9月1日计划提交聚客及云算力软著</div></div>
+        <div class="card metric good"><div class="label">ISO年审</div><div class="value" style="font-size:23px">¥29,000</div><div class="note">聚客ISO报价已确认，进入资料与合同准备阶段</div></div>
+        <div class="card metric gray"><div class="label">人事汇报</div><div class="value" style="font-size:23px">待补充</div><div class="note">原PPT目前仅有人事汇报栏目页，未提供具体明细</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="admin-report">
+      <div class="section-head">
+        <div><div class="section-title">02｜行政汇报</div><div class="section-sub">按“上周进度 → 本周计划 → 负责人”整理</div></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:70px">序号</th><th style="width:150px">工作内容</th><th>上周进度</th><th>本周计划</th><th style="width:100px">负责人</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td><td><b>注册、变更工商事宜</b></td>
+              <td>① 夏风星河股东变更推进，已提醒 Lily 做完税；<br>② 臻爱注销提交公示，未签完名字。</td>
+              <td>跟进夏风星河变更及臻爱注销。</td><td>劳琪琦</td>
+            </tr>
+            <tr>
+              <td>2</td><td><b>行政事宜</b></td>
+              <td>
+                ① 跟进一类知识产权提交，2家公司已提交，待出证后下载资料；<br>
+                ② 与伟文沟通网安提交，已联系备案单位，正在处理，需先确认网站类型及填写网站介绍；<br>
+                ③ 跟进志彬本年软著项目进度，9月1日先提交聚客及云算力软著申请；<br>
+                ④ 研究提交 JOINCOM Logo 商标，正在尝试提交，商品类型仍在确认；<br>
+                ⑤ 与晓筠对接收回行政合同及行政工作，暂未完成；<br>
+                ⑥ 确认聚客 ISO 报价 ¥29,000，需开始准备 ISO 年审资料。
+              </td>
+              <td>
+                ① 继续处理网站备案事宜；<br>
+                ② 尝试提交商标申请；<br>
+                ③ 与晓筠对接收回行政合同及行政工作；<br>
+                ④ 准备 ISO 与审核机构的合同。
+              </td><td>劳琪琦</td>
+            </tr>
+            <tr>
+              <td>3</td><td><b>月度支付事宜</b></td><td>暂无</td><td>暂无</td><td>劳琪琦<br>陈晓筠</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hr-progress" style="margin-top:14px">
+        <div class="card">
+          <h3 style="margin-top:0">本周重点跟进</h3>
+          <div class="todo-list">
+            <div class="todo"><div class="todo-num">1</div><div><div class="todo-title">工商变更 / 注销</div><div class="todo-desc">跟进夏风星河股东变更完税及臻爱注销签名、公示流程。</div></div><span class="status s-yellow">推进中</span></div>
+            <div class="todo"><div class="todo-num">2</div><div><div class="todo-title">网站备案</div><div class="todo-desc">确认网站类型并完善网站介绍，继续与备案单位推进。</div></div><span class="status s-yellow">推进中</span></div>
+            <div class="todo"><div class="todo-num">3</div><div><div class="todo-title">JOINCOM Logo 商标</div><div class="todo-desc">继续确认商品/服务类型并尝试提交申请。</div></div><span class="status s-yellow">待提交</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">资质与资料工作</h3>
+          <div class="todo-list">
+            <div class="todo"><div class="todo-num">4</div><div><div class="todo-title">软著申请</div><div class="todo-desc">按计划推进聚客及云算力软著申请。</div></div><span class="status s-blue">计划中</span></div>
+            <div class="todo"><div class="todo-num">5</div><div><div class="todo-title">ISO 年审</div><div class="todo-desc">报价 ¥29,000 已确认，准备资料并与审核机构签署合同。</div></div><span class="status s-blue">准备中</span></div>
+            <div class="todo"><div class="todo-num">6</div><div><div class="todo-title">行政工作交接</div><div class="todo-desc">继续与晓筠对接收回行政合同及行政工作。</div></div><span class="status s-yellow">未完成</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="hr-report">
+      <div class="section-head">
+        <div><div class="section-title">03｜人事汇报（晓筠）</div><div class="section-sub">保留独立栏目，等待补充本周明细</div></div>
+      </div>
+      <div class="placeholder">
+        <b>本周人事汇报资料待补充</b>
+        当前上传PPT仅包含“人事汇报（晓筠）”栏目页，未包含具体人事数据或工作进度。后续补充内容后，可直接加入此栏目，不影响管委会会议资料。
+      </div>
+    </section>
+
+    <div class="footer">人事行政周会议 · 2026/08/30</div>
+  </main>
+</section>
+
+</div>
+
+<script>
+function showMeeting(id){
+  document.querySelectorAll('.meeting-page').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.meeting-btn').forEach(x=>x.classList.toggle('active',x.dataset.target===id));
+  document.getElementById('management-nav').style.display = id==='management' ? 'block':'none';
+  document.getElementById('hradmin-nav').style.display = id==='hradmin' ? 'block':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.meeting-btn').forEach(btn=>btn.addEventListener('click',()=>showMeeting(btn.dataset.target)));
+</script>
+</body>
+</html>
