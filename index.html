@@ -1,196 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>周会议资料中心｜2026/09/14</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>周会议资料中心｜2026/10/12</title>
 <style>
-:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#6b7485;--nav:#10203a;--blue:#2f6fed;--green:#1f9d68;--yellow:#d99916;--red:#d95454;--gray:#8993a4;--line:#e6eaf0;--sidebar:250px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:var(--bg);color:var(--text)}button{font:inherit}
-.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:linear-gradient(180deg,#0f1f3a,#152b4d);color:#fff;z-index:50;padding:22px 16px;overflow:auto;box-shadow:6px 0 24px rgba(9,20,42,.12)}
-.logo{font-size:19px;font-weight:850;margin:2px 8px 5px}.logo-sub{font-size:11px;color:#9fb1cd;margin:0 8px 22px;line-height:1.6}
-.meeting-btn{width:100%;border:0;background:transparent;color:#cbd7e8;padding:12px 13px;border-radius:10px;text-align:left;cursor:pointer;margin:4px 0;font-weight:750;display:flex;align-items:center;gap:10px}.meeting-btn.active{background:#2f6fed;color:#fff}.dot{width:8px;height:8px;border-radius:50%;background:currentColor}
-.subnav{margin:7px 0 15px 21px;border-left:1px solid rgba(255,255,255,.13);padding-left:10px}.subnav a{display:block;color:#9fb1cd;text-decoration:none;font-size:12px;padding:6px 7px;border-radius:6px}.subnav a:hover{color:#fff;background:rgba(255,255,255,.05)}
-.sidebar-foot{font-size:11px;color:#7f94b4;margin:22px 8px;line-height:1.7}.content{margin-left:var(--sidebar);min-height:100vh}.meeting-page{display:none}.meeting-page.active{display:block}
-.hero{padding:43px 34px 32px;background:linear-gradient(135deg,#10203a,#1c3d72 55%,#2f6fed);color:#fff}.hero.hr{background:linear-gradient(135deg,#26384f,#37647a 55%,#2f7d74)}
-.hero-inner,.container{max-width:1320px;margin:0 auto}.hero h1{font-size:34px;margin:0 0 10px}.hero p{margin:0;color:#dbe6f8;font-size:15px}.hero-meta{margin-top:14px;font-size:13px;color:#c4d4ea}.container{padding:24px 25px 60px}
-.section{scroll-margin-top:20px;margin-bottom:25px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:7px 2px 14px}.section-title{font-size:24px;font-weight:850}.section-sub{font-size:13px;color:var(--muted)}
-.grid{display:grid;gap:14px}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 7px 24px rgba(24,39,75,.055)}.metric .label,.label{font-size:13px;color:var(--muted);margin-bottom:9px}.metric .value{font-size:27px;font-weight:850}.metric .note,.small-note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.65}
-.accent{border-top:4px solid var(--blue)}.good{border-top:4px solid var(--green)}.warn{border-top:4px solid var(--yellow)}.alert{border-top:4px solid var(--red)}.gray{border-top:4px solid var(--gray)}
-.management{background:linear-gradient(135deg,#f7faff,#eef4ff);border:1px solid #d9e5ff;padding:18px 20px;border-radius:14px;margin-top:14px;line-height:1.8}.management b{color:#163d84}
-.table-wrap{overflow:auto;border-radius:14px;border:1px solid var(--line);background:#fff}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top;line-height:1.65}th{background:#f8fafc;color:#4c566a;font-weight:750}tr:last-child td{border-bottom:none}
-.status{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:750}.s-green{background:#e9f7f0;color:#14794f}.s-yellow{background:#fff5da;color:#94640a}.s-gray{background:#eef1f5;color:#657084}.s-blue{background:#eaf1ff;color:#245cb8}.s-red{background:#fdecec;color:#a63d3d}
-.up{color:var(--green);font-weight:800}.down{color:var(--red);font-weight:800}.flat{color:var(--gray);font-weight:800}.todo-list{display:grid;gap:10px}.todo{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:start;padding:13px;border:1px solid var(--line);border-radius:11px}.todo-num{width:26px;height:26px;border-radius:7px;background:#edf3ff;color:#245cb8;display:grid;place-items:center;font-size:12px;font-weight:800}.todo-title{font-weight:800;font-size:14px;margin-bottom:5px}.todo-desc{font-size:12px;color:var(--muted);line-height:1.65}
-.placeholder{padding:38px;text-align:center;border:1px dashed #cbd3df;border-radius:14px;background:#fbfcfe;color:var(--muted)}.footer{text-align:center;color:#8791a3;font-size:12px;padding:20px}
-@media(max-width:980px){:root{--sidebar:210px}.grid-4,.grid-3,.grid-2{grid-template-columns:1fr 1fr}}@media(max-width:700px){.sidebar{position:static;width:100%}.content{margin-left:0}.subnav{display:none!important}.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.hero h1{font-size:27px}}@media print{.sidebar{display:none}.content{margin-left:0}.meeting-page{display:block!important;page-break-after:always}.card{box-shadow:none}body{background:#fff}}
-</style>
-</head>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial;color:#172033;background:#f4f7fb}
+.side{position:fixed;inset:0 auto 0 0;width:235px;background:linear-gradient(180deg,#10203a,#17345d);color:#fff;padding:22px 16px;z-index:10}
+.side h3{margin:0 8px 5px}.sub{font-size:11px;color:#9eb1ce;margin:0 8px 20px;line-height:1.6}
+.nav{display:block;width:100%;padding:12px 13px;margin:7px 0;border:0;border-radius:9px;background:transparent;color:#cbd8ea;text-align:left;cursor:pointer;font-weight:700}
+.nav.active{background:#2f6fed;color:white}.main{margin-left:235px;padding:28px}.page{display:none;max-width:1350px;margin:auto}.page.active{display:block}
+.hero{background:linear-gradient(135deg,#10203a,#214a87 60%,#2f6fed);color:white;padding:30px;border-radius:16px;margin-bottom:18px}
+.hero.hr{background:linear-gradient(135deg,#26384f,#2f7d74)}.hero h1{margin:0 0 8px;font-size:30px}.hero p{margin:0;color:#dce6f5}
+.sec{background:#fff;border:1px solid #e3e8f0;border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 5px 20px rgba(30,50,80,.06)}
+.sec h2{margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid3{grid-template-columns:repeat(3,1fr)}
+.card{border:1px solid #e3e8f0;border-radius:12px;padding:14px;background:#fff}.label{font-size:13px;color:#6c7688}.v{font-size:24px;font-weight:800;margin-top:7px}
+.muted{color:#6c7688;font-size:12px;line-height:1.65}.red{color:#c74444}.green{color:#178354}.blue{color:#2f6fed}
+table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:10px 12px;border-bottom:1px solid #e6eaf0;text-align:left;vertical-align:top;line-height:1.6;font-size:13px}th{background:#f5f8fc;color:#4c566a}
+.tag{display:inline-block;padding:3px 8px;border-radius:20px;background:#e9f7f0;color:#16754e;font-size:12px}.warn{background:#fff5da;color:#94640a}
+.note{padding:13px 15px;background:#eef4ff;border-radius:10px;color:#35527e;line-height:1.7;margin-top:12px}
+@media(max-width:900px){.side{position:static;width:auto}.main{margin:0}.grid,.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid,.grid3{grid-template-columns:1fr}}
+@media print{.side{display:none}.main{margin:0}.page{display:block!important;page-break-after:always}.sec{box-shadow:none}}
+</style></head>
 <body>
-<aside class="sidebar">
-<div class="logo">周会议资料中心</div><div class="logo-sub">一个 HTML · 两个会议<br>本周数据周期：09/07–09/11</div>
-<button class="meeting-btn active" data-target="management"><span class="dot"></span>管委会周会议</button>
-<div class="subnav" id="management-nav">
-<a href="#overview" onclick="showMeeting('management')">经营总览</a><a href="#projects" onclick="showMeeting('management')">项目经营</a><a href="#joincom" onclick="showMeeting('management')">JOINCOM</a><a href="#finance" onclick="showMeeting('management')">财务板块</a><a href="#kol" onclick="showMeeting('management')">KOL / IT专项</a><a href="#actions" onclick="showMeeting('management')">下周行动</a>
-</div>
-<button class="meeting-btn" data-target="hradmin"><span class="dot"></span>人事行政周会议</button>
-<div class="subnav" id="hradmin-nav" style="display:none"><a href="#hr-overview" onclick="showMeeting('hradmin')">本周总览</a><a href="#admin-report" onclick="showMeeting('hradmin')">行政汇报</a><a href="#hr-report" onclick="showMeeting('hradmin')">人事汇报</a></div>
-<div class="sidebar-foot">汇报日：2026/09/14<br>Reported By：Irene</div>
+<aside class="side">
+<h3>周会议资料中心</h3><div class="sub">一个HTML · 两个会议<br>本周更新：2026/10/12</div>
+<button class="nav active" onclick="showPage('mgmt',this)">管委会周会议</button>
+<button class="nav" onclick="showPage('hr',this)">人事行政周会议</button>
 </aside>
+<main class="main">
 
-<div class="content">
-<section id="management" class="meeting-page active">
-<section class="hero"><div class="hero-inner"><h1>管委会周会议汇报</h1><p>经营结果 · 财务变化 · 项目专项 · 行动闭环</p><div class="hero-meta">数据周期：2026/09/07–09/11 ｜ 汇报日：2026/09/14</div></div></section>
-<main class="container">
+<section id="mgmt" class="page active">
+<div class="hero"><h1>管委会周会议汇报</h1><p>经营结果 · JOINCOM · KOL/IT · 财务板块｜汇报日：2026/10/12</p></div>
 
-<section class="section" id="overview"><div class="section-head"><div><div class="section-title">01｜本周经营总览</div><div class="section-sub">先看本周经营结果，再进入财务及专项</div></div></div>
-<div class="grid grid-4">
-<div class="card metric good"><div class="label">领功本周下发流水</div><div class="value">¥180,039</div><div class="note">累计 ¥608,738.54；本周完成下发客户1家</div></div>
-<div class="card metric accent"><div class="label">JOINCOM本月预计收入</div><div class="value">HK$9,239.24</div><div class="note">本周激活预计佣金 HK$1,595；异常/扣佣 0 单</div></div>
-<div class="card metric accent"><div class="label">银行余额合计</div><div class="value">¥773,026.37</div><div class="note">截至 2026/09/11 17:30</div></div>
-<div class="card metric warn"><div class="label">合伙人账户净余额</div><div class="value">¥10,655.16</div><div class="note">负数余额小计 -¥949,452.32</div></div>
-</div>
-<div class="management"><b>本周总览：</b>领功流水及服务收入较上周增长；JOINCOM本周激活预计佣金为HK$1,595，本月预计收入更新为HK$9,239.24；银行余额较上周回升至77.30万元，合伙人账户净余额重新转正。KOL总观看量及净增订阅上升，但发布量、观看时长和估算收入仍需关注。</div></section>
-
-<section class="section" id="projects"><div class="section-head"><div><div class="section-title">02｜项目经营板块</div><div class="section-sub">“本周经营结论”统一归入本周关键结果，不作为管理结论</div></div></div>
-<div class="table-wrap"><table><thead><tr><th>模块</th><th>状态</th><th>本周关键结果</th><th>管理结论 / 下一动作</th></tr></thead><tbody>
-<tr><td><b>领功</b></td><td><span class="status s-green">正常</span></td><td><b>经营数据：</b>本周下发流水 ¥180,039，累计 ¥608,738.54；本周服务收入 ¥360.08，累计 ¥1,217.48；累计服务支出 ¥605.79；本周完成下发客户1家，累计2家。<br><b>本周经营结论：</b>① 鼎茂技术资格证获取，以及合同生成；② 海汇因营业范围里面有医疗，所以先暂停风控流程，待补充上下游合同。</td><td>继续推进客户下发与合同/风控资料闭环。</td></tr>
-<tr><td><b>返现易</b></td><td><span class="status s-green">正常</span></td><td><b>本周经营结论：</b>① 从成果网、中岸等联盟平台中选取适用的新活动；② 排查历史商城对接链路。<br><b>已完成提现平台：</b>京东、淘宝3个账户、拼多多、美团、携程。</td><td>继续筛选可用活动并处理历史链路问题。</td></tr>
-<tr><td><b>JOINCOM</b></td><td><span class="status s-green">已更新</span></td><td>自营新上台1；渠道：房地产（Br开台×3）+自营客户×1；本周激活预计佣金 HK$1,595；本月预计收入 HK$9,239.24；异常/扣佣0单。</td><td>继续跟进T+1 / T+3 / T+7阶段收款及客户上台转化。</td></tr>
-<tr><td><b>KOL</b></td><td><span class="status s-yellow">关注</span></td><td>有效频道30；YouTube发布190条；总观看量1,008.61万；净增订阅6,411。</td><td>观看量与订阅增长，但发布量下降22.1%，继续观察内容供给与流量转化。</td></tr>
-<tr><td><b>听旅</b></td><td><span class="status s-blue">推进中</span></td><td>匹配酒店8家；订单38单；确认35单；取消/失败3单。</td><td>匹配规模显著增长，继续关注取消/失败订单。</td></tr>
-<tr><td><b>广东科孚AI标书</b></td><td><span class="status s-blue">推进中</span></td><td>推进应标文件类多样本验证，确定 Terra + Medium 组合，并与客户对齐资料优先方向。</td><td>继续验证样本并完善客户资料方向。</td></tr>
-</tbody></table></div></section>
-
-<section class="section" id="joincom"><div class="section-head"><div><div class="section-title">03｜JOINCOM专项</div><div class="section-sub">按09.11履约&风控支撑表更新；截图中被遮挡的数据不自行补录</div></div></div>
-<div class="grid grid-4">
-<div class="card metric good"><div class="label">自营新上台客户</div><div class="value">1</div><div class="note">上周：1</div></div>
-<div class="card metric accent"><div class="label">渠道新上台</div><div class="value" style="font-size:21px">房地产 Br×3</div><div class="note">另含自营客户×1；上周房地产Br×2</div></div>
-<div class="card metric warn"><div class="label">本周激活预计佣金</div><div class="value">HK$1,595</div><div class="note">上周 HK$4,025，下降约60.4%</div></div>
-<div class="card metric good"><div class="label">异常 / 扣佣单数</div><div class="value">0</div><div class="note">上周：0</div></div>
-</div>
-<div class="grid grid-2" style="margin-top:14px">
-<div class="card metric accent"><div class="label">JOINCOM本月预计收入</div><div class="value">HK$9,239.24</div><div class="note">本周截图已更新的月度预计收入</div></div>
-<div class="card"><div class="label">说明</div><div class="small-note">CMHK佣金按 T+1 / T+3 / T+7 阶段收款。截图中“当月预计累计佣金 / 本月打款”等部分数值被遮挡，因此本版不推测、不沿用旧值。</div></div>
-</div></section>
-
-<section class="section" id="finance"><div class="section-head"><div><div class="section-title">04｜财务板块</div><div class="section-sub">银行余额、交易流水、合伙人余额、公司主体挂账统一归入财务板块</div></div></div>
-<div class="grid grid-4">
-<div class="card metric accent"><div class="label">银行余额合计</div><div class="value">¥773,026.37</div><div class="note">上周 ¥637,352.51，增加约¥135,673.86</div></div>
-<div class="card metric good"><div class="label">合伙人账户净余额</div><div class="value">¥10,655.16</div><div class="note">上周 -¥23,307.11，重新转正</div></div>
-<div class="card metric warn"><div class="label">合伙人负数余额小计</div><div class="value">-¥949,452.32</div><div class="note">上周 -¥983,414.59，负余额敞口继续收窄</div></div>
-<div class="card metric alert"><div class="label">公司主体挂账合计</div><div class="value">¥20,058,056.61</div><div class="note">截至2026/09/11；按挂账表13项非零余额合计</div></div>
-</div>
-
-<div class="grid grid-2" style="margin-top:14px">
-<div class="card"><h3 style="margin-top:0">银行余额分布</h3><div class="table-wrap" style="border:none"><table style="min-width:0"><tbody>
-<tr><td>聚客</td><td style="text-align:right"><b>¥153,619.36</b></td></tr>
-<tr><td>云算力</td><td style="text-align:right"><b>¥275,750.59</b></td></tr>
-<tr><td>自牧</td><td style="text-align:right"><b>¥193,764.25</b></td></tr>
-<tr><td>兑的</td><td style="text-align:right"><b>¥22,759.46</b></td></tr>
-<tr><td>珠海新澳</td><td style="text-align:right"><b>¥127,132.71</b></td></tr>
-</tbody></table></div></div>
-<div class="card"><h3 style="margin-top:0">合伙人余额重点</h3><div class="table-wrap" style="border:none"><table style="min-width:0"><tbody>
-<tr><td>袁建彰</td><td style="text-align:right"><b>¥780,272.38</b></td></tr>
-<tr><td>梁剑锋</td><td style="text-align:right"><b>-¥578,053.81</b></td></tr>
-<tr><td>曾晓峰</td><td style="text-align:right"><b>-¥201,987.89</b></td></tr>
-<tr><td>曾鼎</td><td style="text-align:right"><b>-¥120,964.21</b></td></tr>
-<tr><td>张伶</td><td style="text-align:right"><b>-¥48,446.41</b></td></tr>
-</tbody></table></div></div>
-</div>
-
-<div class="card" style="margin-top:14px"><h3 style="margin-top:0">本周重点交易流水（09/07–09/11）</h3>
-<div class="table-wrap" style="border:none"><table><thead><tr><th>日期</th><th>主体</th><th>类型</th><th>金额</th><th>对方 / 摘要</th></tr></thead><tbody>
-<tr><td>09/11</td><td>聚客</td><td><span class="status s-green">收入</span></td><td>¥60,000.00</td><td>广州聚客网络科技有限公司｜内部资金调拨</td></tr>
-<tr><td>09/10</td><td>云算力</td><td><span class="status s-green">收入</span></td><td>¥7,251.82</td><td>小熊电器股份有限公司｜费用款</td></tr>
-<tr><td>09/10</td><td>聚客</td><td><span class="status s-green">收入</span></td><td>¥27,500.00</td><td>广州玉枕科技有限公司｜转存</td></tr>
-<tr><td>09/10</td><td>云算力</td><td><span class="status s-green">收入</span></td><td>¥14,172.64</td><td>广州云算力网络科技股份有限公司｜内部资金调拨</td></tr>
-<tr><td>09/09</td><td>聚客</td><td><span class="status s-green">收入</span></td><td>¥200,000.00</td><td>广州玉枕科技有限公司｜转存</td></tr>
-<tr><td>09/09</td><td>玉枕</td><td><span class="status s-green">收入</span></td><td>¥5,000.00</td><td>广州玉枕科技有限公司｜网银支付</td></tr>
-<tr><td>09/09</td><td>玉枕</td><td><span class="status s-green">收入</span></td><td>¥275.60</td><td>广州云泽通信有限公司｜服务费</td></tr>
-<tr><td>09/07</td><td>聚客</td><td><span class="status s-green">收入</span></td><td>¥4,245.79</td><td>上海赫程国际旅行社有限公司｜转存</td></tr>
-</tbody></table></div><div class="small-note">以上截图所示09/07–09/11收入流水合计约 ¥318,445.85；内部资金调拨/转存不等同于经营收入，会议中建议只作为资金流水展示。</div></div>
-
-<div class="card" style="margin-top:14px"><h3 style="margin-top:0">各公司主体挂账余额</h3>
-<div class="table-wrap" style="border:none"><table><thead><tr><th>挂账关系</th><th>余额</th><th>备注</th></tr></thead><tbody>
-<tr><td>聚客欠云算力</td><td>¥5,457,500.00</td><td>财务挂账-165.75w</td></tr>
-<tr><td>合规宝欠新澳</td><td>¥500,000.00</td><td>未包含民宿转让款185w</td></tr>
-<tr><td>合规宝欠聚客</td><td>¥1,500,000.00</td><td>—</td></tr>
-<tr><td>聚客欠新澳</td><td>¥700,000.00</td><td>—</td></tr>
-<tr><td>柏特福来欠聚客</td><td>¥1,000,000.00</td><td>—</td></tr>
-<tr><td>自牧欠新澳</td><td>¥300,000.00</td><td>—</td></tr>
-<tr><td>云兑欠云算力</td><td>¥100,000.00</td><td>—</td></tr>
-<tr><td>聚客欠云兑</td><td>¥50,394.61</td><td>—</td></tr>
-<tr><td>聚客欠说理合规</td><td>¥750,000.00</td><td>—</td></tr>
-<tr><td>Martin欠聚客</td><td>¥3,450,000.00</td><td>—</td></tr>
-<tr><td>比率欠聚客</td><td>¥3,000,000.00</td><td>—</td></tr>
-<tr><td>厦门溪合欠聚客</td><td>¥3,250,000.00</td><td>已开云算力发票380w</td></tr>
-<tr><td>聚客欠晓麻雀</td><td>¥162.00</td><td>已开发票280w</td></tr>
-</tbody></table></div></div>
+<div class="sec"><h2>01｜本周经营总览</h2><div class="grid"><div class="card"><div class="label">JOINCOM本月预计收入</div><div class="v blue">HK$129,186.04</div></div><div class="card"><div class="label">KOL有效频道</div><div class="v green">38</div></div><div class="card"><div class="label">合伙人净余额</div><div class="v red">-¥23,600.01</div></div><div class="card"><div class="label">银行余额（10/10）</div><div class="v">¥357,693.80</div></div></div><div class="note">领功与正联协商服务费问题已达成一致；JOINCOM本周预计佣金HK$125,566.30；IT项目按9/28—10/9周报更新。</div></div>
+<div class="sec"><h2>02｜领功 / 返现易经营板块</h2><div class="note">汇报周期：2026-09-27 → 10-11｜汇报人：Alice</div><h3>本周关键结果</h3><table><tr><th>项目</th><th>关键结果</th></tr><tr><td>领功</td><td>与正联协商服务费问题，已达成一致。</td></tr><tr><td>返现易</td><td>本期经营截图未填写关键结果。</td></tr><tr><td>KOL出海</td><td>详见KOL/IT专项。</td></tr></table><h3>核心经营数据</h3><table><tr><th>项目</th><th>指标</th><th>本周</th><th>累计</th><th>状态</th><th>说明</th></tr><tr><td>领功</td><td>下发流水（元）</td><td>145,920.26</td><td>145,920.26</td><td><span class="tag">正常</span></td><td>自营+返现易，流水不等于收入</td></tr><tr><td>领功</td><td>服务收入（元）</td><td>291.84</td><td>291.84</td><td><span class="tag">正常</span></td><td>按已确认服务费口径</td></tr><tr><td>领功</td><td>服务支出（元）</td><td>—</td><td>218.88</td><td><span class="tag">正常</span></td><td>银行卡到账成本0.15%</td></tr><tr><td>领功</td><td>完成下发客户数</td><td>—</td><td>—</td><td><span class="tag">正常</span></td><td>截图未填具体数量</td></tr><tr><td>返现易</td><td>已完成提现平台</td><td>9月底：携程、京东、拼多多、淘宝</td><td>—</td><td><span class="tag">正常</span></td><td>饿了么订单同步、美团链接修复及历史后台数据整理（原表说明）</td></tr></table></div>
+<div class="sec"><h2>03｜JOINCOM专项</h2><div class="note">2026年10月｜履约及风控支撑表（10/10 Miya）</div><table><tr><th>指标</th><th>本周</th><th>上周</th><th>说明</th></tr><tr><td>新上台｜自营</td><td>0</td><td>2</td><td>CMHK号卡新上台量</td></tr><tr><td>新上台｜渠道</td><td>房地产（Br开台×2）、万通70</td><td>房地产（Br开台×2）</td><td>CMHK号卡新上台量</td></tr><tr><td>CMHK本周激活预计佣金（HKD）</td><td>125,566.30</td><td>1,446</td><td>T+1 / T+3 / T+7</td></tr><tr><td>CMHK当月预计累计佣金（HKD）</td><td colspan="2">125,566.30</td><td>本月各周上台预计总收入</td></tr><tr><td>CMHK本月打款（HKD）</td><td colspan="2"><b>16,841.20</b></td><td>已对账</td></tr><tr><td>JOINCOM本月预计收入（HKD）</td><td colspan="2"><b class="red">129,186.04</b></td><td>本月预计总收入</td></tr><tr><td>异常/扣佣单数</td><td>0</td><td>0</td><td>—</td></tr><tr><td>CMHK客户返现活动</td><td colspan="2"><b>1,024.03</b></td><td>CMHK上台客户每月活动优惠返还</td></tr><tr><td>JOINCOM当月累计支出</td><td colspan="2"><b>HK$33,434.10</b></td><td>本月合计支出</td></tr></table></div>
+<div class="sec"><h2>04｜KOL / IT专项</h2><div class="note">黄伟文部门周报｜2026/09/28—10/09</div><table><tr><th>指标</th><th>本周</th><th>上周</th><th>变化</th></tr><tr><td>有效频道</td><td>38</td><td>38</td><td>持平</td></tr><tr><td>YouTube发布</td><td>116条</td><td>120条</td><td>↓3.3%</td></tr><tr><td>总观看量</td><td>1,243.01万</td><td>1,396.34万</td><td>↓11.0%</td></tr><tr><td>观看时长</td><td>94,413.4小时</td><td>117,251.2小时</td><td>↓19.5%</td></tr><tr><td>净增订阅</td><td>8,851</td><td>9,487</td><td>↓6.7%</td></tr><tr><td>估算收入</td><td>US$561.48</td><td>US$679.79</td><td>↓17.4%</td></tr><tr><td>新增处理任务</td><td>238</td><td>257</td><td>↓7.4%</td></tr></table><h3>项目进度</h3><table><tr><th>项目</th><th>本期进展</th></tr><tr><td>KOL达人合作</td><td>5位达人、7月账单已反馈；收益自动化工具完成V0.1审查。</td></tr><tr><td>领功 / 返现易</td><td>影刀RPA开单4单；多平台好货搜索恢复；推进转链及自动检查。</td></tr><tr><td>听旅</td><td>匹配订单32单，全部确认，取消/失败0单。</td></tr><tr><td>广东科源AI标书</td><td>解析模块上线；线上9个样本中2个解析失败，正在定位。</td></tr><tr><td>wxbot广告投放</td><td>项目正式上线并开始广告投放。</td></tr></table><div class="note">运营观察：有效频道稳定，其余观看、时长、订阅和收入指标回落。</div></div>
+<div class="sec"><h2>05｜财务板块</h2><div class="grid"><div class="card"><div class="label">银行余额合计｜10/10 16:00</div><div class="v">¥357,693.80</div></div><div class="card"><div class="label">合伙人余额合计｜10/10 19:30</div><div class="v red">-¥23,600.01</div></div><div class="card"><div class="label">负数小计</div><div class="v red">-¥780,767.93</div></div><div class="card"><div class="label">2026累计利息</div><div class="v">¥43,222.11</div></div></div><h3>银行余额汇总｜2026/10/10 16:00</h3><table><tr><th>公司</th><th>银行及余额（元）</th><th>小计</th></tr><tr><td>聚客</td><td>南粤7,176.80；建行21,233.71；工行25,946.74；中信10,421.18；农行36,276.61；光大245.70</td><td>101,300.74</td></tr><tr><td>云算力</td><td>建行1,403.86</td><td>1,403.86</td></tr><tr><td>自牧</td><td>南粤148,104.68；建行636.34；工行0.00</td><td>148,741.02</td></tr><tr><td>兑的</td><td>招行42,327.56</td><td>42,327.56</td></tr><tr><td>珠海新澳</td><td>中行63,920.62</td><td>63,920.62</td></tr><tr><td colspan="2"><b>合计</b></td><td><b>357,693.80</b></td></tr></table><h3>合伙人余额｜10/10 19:30</h3><table><tr><th>合伙人</th><th>币种</th><th>09/24</th><th>10/10</th><th>2026累计利息</th></tr><tr><td>陆敏君</td><td>人民币</td><td>868.16</td><td>868.16</td><td>-6.43</td></tr><tr><td>袁建彰</td><td>人民币</td><td>780,272.38</td><td>756,299.76</td><td>0.00</td></tr><tr><td>梁剑锋</td><td>人民币</td><td>-399,534.28</td><td>-400,134.28</td><td>21,712.29</td></tr><tr><td>梁剑锋</td><td>港币</td><td>0.00</td><td>0.00</td><td>-1,536.85</td></tr><tr><td>伍立恒</td><td>人民币</td><td>0.00</td><td>0.00</td><td>0.00</td></tr><tr><td>谭希莹</td><td>人民币</td><td>0.00</td><td>0.00</td><td>0.00</td></tr><tr><td>曾鼎</td><td>人民币</td><td>-120,964.21</td><td>-120,964.21</td><td>11,763.48</td></tr><tr><td>甘振飞</td><td>人民币</td><td>0.00</td><td>0.00</td><td>0.00</td></tr><tr><td>曾晓峰</td><td>人民币</td><td>-195,410.90</td><td>-238,389.90</td><td>10,057.17</td></tr><tr><td>李卉茵</td><td>人民币</td><td>-23,750.27</td><td>27,166.87</td><td>-501.61</td></tr><tr><td>张伶</td><td>人民币</td><td>-48,446.41</td><td>-48,446.41</td><td>1,566.24</td></tr><tr><td colspan="3"><b>合计（人民币口径）</b></td><td><b>-23,600.01</b></td><td><b>43,222.11</b></td></tr><tr><td colspan="3">负数小计</td><td>-780,767.93</td><td>—</td></tr></table><div class="note">港币余额按原截图口径折算汇总。</div><h3>公司主体挂账（截至2026-10-10）</h3><table><tr><th>公司主体</th><th>金额（元）</th><th>备注</th></tr><tr><td>聚客欠云算力</td><td>5,357,500.00</td><td>财务挂账-165.75w</td></tr><tr><td>合规宝欠新澳</td><td>500,000.00</td><td>未包含民宿转让款185w</td></tr><tr><td>合规宝欠聚客</td><td>1,500,000.00</td><td></td></tr><tr><td>聚客欠新澳</td><td>700,000.00</td><td></td></tr><tr><td>柏特福来欠聚客</td><td>1,000,000.00</td><td></td></tr><tr><td>自牧欠新澳</td><td>300,000.00</td><td></td></tr><tr><td>云兑欠云算力</td><td>100,000.00</td><td></td></tr><tr><td>聚客欠云兑</td><td>50,394.61</td><td></td></tr><tr><td>聚客欠说理合规</td><td>750,000.00</td><td></td></tr><tr><td>Martin欠聚客</td><td>3,450,000.00</td><td></td></tr><tr><td>比率欠聚客</td><td>3,000,000.00</td><td></td></tr><tr><td>厦门溪合欠聚客</td><td>3,250,000.00</td><td>已开云算力发票380w</td></tr><tr><td>聚客欠晓麻雀</td><td>162.00</td><td>已开发票280w</td></tr></table><h3>未导入流水｜截至10/10截图</h3><table><tr><th>日期</th><th>主体</th><th>金额（元）</th><th>摘要</th><th>备注 / 未导入原因</th></tr><tr><td>10/10</td><td>聚客</td><td>25,666.67</td><td>贷款利息</td><td></td></tr><tr><td>10/10</td><td>聚客</td><td>7,111.87</td><td>服务费</td><td></td></tr><tr><td>10/09</td><td>玉枕</td><td>8,046.61</td><td>服务费</td><td></td></tr><tr><td>10/09</td><td>玉枕</td><td>48,863.65</td><td>服务费</td><td></td></tr><tr><td>10/09</td><td>聚客</td><td>20,000.00</td><td>内部资金调拨</td><td></td></tr><tr><td>10/01</td><td>云算力</td><td>79,004.25</td><td>内部资金调拨</td><td></td></tr><tr><td>09/30</td><td>玉枕</td><td>40,000.00</td><td>网银支付</td><td></td></tr><tr><td>09/30</td><td>聚客</td><td>300,000.00</td><td>贷款</td><td></td></tr><tr><td>09/30</td><td>比率</td><td>9.23</td><td>转账</td><td></td></tr><tr><td>09/30</td><td>聚客</td><td>49,628.67</td><td>服务费</td><td></td></tr><tr><td>09/30</td><td>聚客</td><td>35,000.00</td><td>内部资金调拨</td><td></td></tr><tr><td>09/30</td><td>玉枕</td><td>20,000.00</td><td>服务费</td><td></td></tr><tr><td>09/29</td><td>云算力</td><td>45,225.00</td><td>内部资金调拨</td><td></td></tr><tr><td>09/29</td><td>云算力</td><td>100,000.00</td><td>往来款</td><td></td></tr><tr><td>09/29</td><td>聚客</td><td>100,000.00</td><td>贷款</td><td></td></tr><tr><td>09/29</td><td>聚客</td><td>11,871.33</td><td>转存</td><td></td></tr><tr><td>09/29</td><td>聚客</td><td>20,000.00</td><td>内部资金调拨</td><td></td></tr><tr><td>09/29</td><td>玉枕</td><td>50,000.00</td><td>服务费</td><td></td></tr><tr><td>09/28</td><td>聚客</td><td>39,480.21</td><td>转存</td><td></td></tr></table><div class="note">本期截图的“备注”栏均未填写原因，因此如实留空；内部调拨、往来款及贷款不直接计为经营收入。</div></div>
 </section>
 
-<section class="section" id="kol"><div class="section-head"><div><div class="section-title">05｜KOL / IT专项</div><div class="section-sub">黄伟文周报：2026/09/07–09/11</div></div></div>
-<div class="grid grid-4">
-<div class="card metric"><div class="label">有效频道</div><div class="value">30</div><div class="note">与上周持平</div></div>
-<div class="card metric warn"><div class="label">YouTube发布数</div><div class="value">190条</div><div class="note"><span class="down">↓22.1%</span>｜上周244条</div></div>
-<div class="card metric good"><div class="label">总观看量</div><div class="value">1,008.61万</div><div class="note"><span class="up">↑19.1%</span>｜上周846.59万</div></div>
-<div class="card metric good"><div class="label">净增订阅</div><div class="value">6,411</div><div class="note"><span class="up">↑19.5%</span>｜上周5,366</div></div>
-</div>
-<div class="grid grid-3" style="margin-top:14px">
-<div class="card metric warn"><div class="label">观看时长</div><div class="value">95,389.0h</div><div class="note"><span class="down">↓1.3%</span></div></div>
-<div class="card metric warn"><div class="label">估算收入</div><div class="value">US$498.99</div><div class="note"><span class="down">↓0.8%</span>｜上周US$502.92</div></div>
-<div class="card metric good"><div class="label">新增处理任务</div><div class="value">258</div><div class="note"><span class="up">↑0.4%</span></div></div>
-</div>
-<div class="management"><b>KOL观察：</b>有效频道保持稳定；发布量明显回落，但总观看量与净增订阅均增长约19%，说明本周单位内容流量效率有所改善。观看时长与估算收入小幅下降，仍需继续观察。</div>
-<div class="grid grid-2" style="margin-top:14px">
-<div class="card"><h3 style="margin-top:0">领功 / 返现易技术侧</h3><div class="todo-list">
-<div class="todo"><div class="todo-num">1</div><div><div class="todo-title">领功RPA</div><div class="todo-desc">稳定运行，本周开单2单。</div></div><span class="status s-green">运行中</span></div>
-<div class="todo"><div class="todo-num">2</div><div><div class="todo-title">商城链路排查</div><div class="todo-desc">下架中岸12个失效活动，并下架网易严选、考拉相关活动。</div></div><span class="status s-green">已处理</span></div>
-<div class="todo"><div class="todo-num">3</div><div><div class="todo-title">公众号自动回复</div><div class="todo-desc">修复携程火车票、机票及多麦网小米有品自动回复。</div></div><span class="status s-green">已修复</span></div>
-</div></div>
-<div class="card"><h3 style="margin-top:0">听旅 / AI标书</h3><div class="table-wrap" style="border:none"><table style="min-width:0"><tbody>
-<tr><td>听旅匹配酒店</td><td><b>8家</b></td><td class="up">↑60.0%</td></tr>
-<tr><td>匹配订单总数</td><td><b>38单</b></td><td class="up">↑81.0%</td></tr>
-<tr><td>已确认订单</td><td><b>35单</b></td><td class="up">↑66.7%</td></tr>
-<tr><td>取消 / 失败</td><td><b>3单</b></td><td class="down">新增3单</td></tr>
-</tbody></table></div><div class="small-note">广东科孚AI标书：应标文件类已录入正式路径并开展多样本验证；模型组合由GPT-5.5不可用后改用GPT-5.6比较，当前选择Terra + Medium，并与客户对齐AI制作标书和招标制度建设的优先方向。</div></div>
-</div></section>
-
-<section class="section" id="actions"><div class="section-head"><div><div class="section-title">06｜下周行动闭环</div><div class="section-sub">只列需要继续推进的动作</div></div></div>
-<div class="grid grid-3">
-<div class="card"><b>领功</b><div class="small-note">补齐海汇上下游合同后恢复风控流程；继续推进鼎茂合同闭环。</div></div>
-<div class="card"><b>返现易</b><div class="small-note">继续筛选联盟新活动，并排查历史商城对接链路。</div></div>
-<div class="card"><b>JOINCOM</b><div class="small-note">跟进阶段收款及房地产渠道上台转化。</div></div>
-<div class="card"><b>财务</b><div class="small-note">持续跟进合伙人负余额及各主体大额挂账；流水与经营收入继续分口径汇报。</div></div>
-<div class="card"><b>KOL / IT</b><div class="small-note">观察发布量下降情况下的流量效率与收入变化；继续推进穿山甲备案及软件交付。</div></div>
-<div class="card"><b>AI标书</b><div class="small-note">继续多样本验证并完善客户资料优先方向。</div></div>
-</div></section>
-<div class="footer">管委会周会议 · 2026/09/14</div>
-</main></section>
-
-<section id="hradmin" class="meeting-page">
-<section class="hero hr"><div class="hero-inner"><h1>人事行政周会议</h1><p>工商 · 网站备案 · 商标 · ISO · 月度支付 · 人事事项</p><div class="hero-meta">2026/09/14 ｜ Reported By：Irene</div></div></section>
-<main class="container">
-<section class="section" id="hr-overview"><div class="section-head"><div><div class="section-title">01｜本周总览</div><div class="section-sub">按260914人事行政PPT更新</div></div></div>
-<div class="grid grid-4">
-<div class="card metric warn"><div class="label">工商事项</div><div class="value" style="font-size:21px">持续跟进</div><div class="note">夏风星河变更、臻爱注销、佛山通联达注销</div></div>
-<div class="card metric warn"><div class="label">网站备案</div><div class="value" style="font-size:21px">云算力未审核</div><div class="note">本周继续跟进玉枕及云算力备案审核</div></div>
-<div class="card metric good"><div class="label">聚客ISO合同</div><div class="value" style="font-size:21px">已盖章</div><div class="note">待对方寄回双章后支付；准备年审资料</div></div>
-<div class="card metric accent"><div class="label">法务合同续签</div><div class="value" style="font-size:21px">已提交盖章</div><div class="note">继续跟进后续流程</div></div>
-</div></section>
-
-<section class="section" id="admin-report"><div class="section-head"><div><div class="section-title">02｜行政汇报</div><div class="section-sub">上周进度 → 本周计划 → 负责人</div></div></div>
-<div class="table-wrap"><table><thead><tr><th>工作内容</th><th>上周进度</th><th>本周计划</th><th>负责人</th></tr></thead><tbody>
-<tr><td><b>注册、变更工商事宜</b></td><td>① 跟进夏风星河变更及臻爱注销，未完成；<br>② 现场提交佛山通联达注销原件，未完成，需经办人或法人提交。</td><td>① 跟进夏风星河工商变更及臻爱公司注销；<br>② 现场提交佛山通联达原件，取回注销通知。</td><td>劳琪琦</td></tr>
-<tr><td><b>行政事宜</b></td><td>① 提交云算力网站备案，未审核；<br>② 修改或调整Logo后再提交商标申请，待申请；<br>③ 法务合同续签，已提交合同盖章；<br>④ 聚客ISO合同提交盖章流程，已盖章，待对方寄回双章后支付。</td><td>① 跟进玉枕及云算力网站备案审核；<br>② 修改或调整Logo；<br>③ 跟进软著提交进度；<br>④ 准备聚客ISO年审资料。</td><td>劳琪琦</td></tr>
-<tr><td><b>月度支付事宜</b></td><td>素社租金服务费支付。</td><td>收回月度租金管理费及服务费发票。</td><td>劳琪琦 / 陈晓筠</td></tr>
-</tbody></table></div></section>
-
-<section class="section" id="hr-report"><div class="section-head"><div><div class="section-title">03｜人事汇报（晓筠）</div><div class="section-sub">当前PPT仍只有栏目页</div></div></div><div class="placeholder"><b>本周人事汇报明细待补充</b><br>当前260914 PPT仅保留“人事汇报（晓筠）”栏目页，未提供具体人事数据，因此本HTML不自行补充。</div></section>
-<div class="footer">人事行政周会议 · 2026/09/14</div>
-</main></section>
-</div>
+<section id="hr" class="page"><div class="hero hr"><h1>人事行政周会议</h1><p>工商 · 网站备案 · 商标 · ISO · 财务对账｜2026/10/12</p></div><div class="sec"><h2>01｜行政汇报</h2><table><tr><th>工作内容</th><th>上周进度</th><th>本周计划</th><th>负责人</th></tr><tr><td>注册、变更工商事宜</td><td>跟进夏风星河工商变更及臻爱公司注销；臻爱待公示完毕（10月19日）。</td><td>继续跟进夏风星河工商变更及臻爱公司注销。</td><td>劳琪琦</td></tr><tr><td>行政事宜</td><td>① 跟进网站公安备案，云算力已完成，玉枕待完成；② 检索商标均有近似，拟按AI建议尝试提交通过率较高的方案；③ 聚客ISO证书寄回途中；④ jacco总2024—2025年利息结转仍在核对。</td><td>① 继续跟进玉枕网站备案审核；② 修改或调整Logo并尝试提交；③ 跟进jacco总合伙人余额结转；④ 与Jessica对账大湾区打款到JOINCOM的账单并开具invoice。</td><td>劳琪琦</td></tr><tr><td>月度支付事宜</td><td>已收到素社10月租金管理费账单，尚未支付。</td><td>跟进素社10月租金管理费支付流程。</td><td>劳琪琦 / 陈晓筠</td></tr></table></div><div class="sec"><h2>02｜人事汇报（晓筠）</h2><div class="note">本次PPT仅提供“人事汇报（晓筠）”章节页，未附具体数据，保留栏目。</div></div></section>
+</main>
 <script>
-function showMeeting(id){document.querySelectorAll('.meeting-page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.meeting-btn').forEach(x=>x.classList.toggle('active',x.dataset.target===id));document.getElementById('management-nav').style.display=id==='management'?'block':'none';document.getElementById('hradmin-nav').style.display=id==='hradmin'?'block':'none';window.scrollTo({top:0,behavior:'smooth'})}
-document.querySelectorAll('.meeting-btn').forEach(btn=>btn.addEventListener('click',()=>showMeeting(btn.dataset.target)));
-</script>
-</body></html>
+function showPage(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+</script></body></html>
